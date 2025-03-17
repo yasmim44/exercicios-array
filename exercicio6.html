@@ -1,0 +1,20 @@
+<script>
+    let nota = [
+        n1 = parseFloat(prompt('Digite a nota do aluno: ')),
+        n2 = parseFloat(prompt('Digite a nota do aluno: ')),
+        n3 = parseFloat(prompt('Digite a nota do aluno: ')),
+        n4 = parseFloat(prompt('Digite a nota do aluno: ')),
+        n5 = parseFloat(prompt('Digite a nota do aluno: ')),
+    ];
+    let media;
+    media = (n1 + n2 + n3 + n4 + n5)/5;
+     if(media >= 7){
+        console.log('Aprovado')
+     }else{
+        console.log('Reprovado')
+     }
+
+    nota.forEach(function(notas){
+        console.log('A media é: ' + media)
+    })
+</script>

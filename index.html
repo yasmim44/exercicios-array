@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="amar.png" type="image/x-icon">
+    <title>Cartinha</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f9a0de;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+
+        .container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+       
+        .envelope {
+            position: absolute;
+            width: 200px;
+            height: 140px;
+            background-color: #ff0099; 
+            bottom: 0;
+            overflow: hidden;
+            transition: transform 1s;
+        }
+
+        .envelope-top {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background-color: #ff0099;
+            top: -50px;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transition: transform 1s;
+            transform-origin: top;
+        }
+
+       
+        .card-background {
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            background-color: #f7b6de; 
+            top: -38px; 
+            left: 5px;
+            z-index: -1; 
+        }
+
+        
+        .card {
+            position: absolute;
+            width: 180px;
+            height: 120px;
+            background-color: #fff;
+            top: 40px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0;
+            transition: transform 1s, opacity 1s;
+            z-index: 1;
+        }
+
+        .hearts {
+            position: absolute;
+            display: none;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: float 2s linear forwards;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 10px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+
+        }
+
+        .open-btn {
+            background-color: #c20376;
+            color: white;
+        }
+
+        .reset-btn {
+            background-color: #7c586e;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .open .envelope-top {
+            transform: rotateX(180deg);
+        }
+
+        .open .card {
+            transform: translateY(-60px);
+            opacity: 1;
+        }
+
+        .open .hearts {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="envelope-top"></div>
+        <div class="envelope"></div>
+        <div class="card-background"></div>
+        <div class="card">Beijoca</div>
+        <div class="hearts"></div>
+    </div>
+
+    <div class="buttons">
+        <button class="open-btn" onclick="abrir()">Abrir</button>
+        <button class="reset-btn" onclick="resetar()">Resetar</button>
+    </div>
+
+    <script>
+        
+        function abrir() {
+            const container = document.querySelector(".container");
+            container.classList.add("open");
+
+            const heartsContainer = document.querySelector(".hearts");
+            heartsContainer.innerHTML = "";
+
+            
+            for (let i = 0; i < 8; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.style.left = `${Math.random() * 180}px`;
+                heart.style.animationDelay = `${Math.random()}s`;
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        
+        function resetar() {
+            const container = document.querySelector(".container");
+            container.classList.remove("open");
+            document.querySelector(".hearts").innerHTML = ""; 
+        }
+    </script>
+</body>
+
+</html>

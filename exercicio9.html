@@ -1,0 +1,22 @@
+<script>
+    let jogadores = [];
+    let gols = [];
+    let continuar = 'sim';
+
+    while(continuar == 'sim') {
+        jogadores.push(prompt('Digite o nome de um jogador:'));
+        continuar = prompt('Deseja adicionar mais algum jogador? sim/não');
+    }
+
+    continuar = 'sim';
+
+    while(continuar == 'sim') {
+        gols.push(parseInt(prompt('Digite a quantidade de gols do jogador:')))
+        continuar = prompt('Deseja adicionar mais algum gol? sim/não');
+    }
+
+    console.log('Ranking de Gols:');
+    jogadores.forEach(function(jg, index) {
+        console.log(`${jg} (${gols[index]}) gols`);
+    });
+</script>

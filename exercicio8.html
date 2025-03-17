@@ -1,0 +1,14 @@
+<script>
+    let produtos = [];
+    let continuar = 'sim';
+
+    while(continuar === 'sim') {
+        produtos.push(prompt('Digite o nome do produto para sua lista de compras'));
+        continuar = prompt('Deseja adicionar outro produto a sua lista? sim/não');
+    }
+
+    console.log('Produtos cadastrados:');
+    produtos.forEach(function(pro) {
+        console.log(pro);
+    });
+</script>
